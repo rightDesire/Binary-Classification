@@ -13,8 +13,8 @@ function plotDecisionBoundary(theta, X, y, degree)
             min(X(:,3))-2, max(X(:,3))+2]);
     else
         % Задается диапазон сетки
-        u = linspace(-1, 1.5, 50);
-        v = linspace(-1, 1.5, 50);
+        u = linspace(-10, 10, 500);
+        v = linspace(-10, 10, 500);
 
         z = zeros(length(u), length(v));
         % Оценка z = theta*x на сетке

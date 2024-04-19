@@ -1,23 +1,23 @@
 function polynomialDegreeAnalysis(X_train, y_train, X_test, y_test, lambda)
-    options = optimset('GradObj', 'on', 'MaxIter', 400);
+    options = optimset('MaxIter', 400);
 
     % Создание массива для хранения ошибок
-    d_values = 1:5; % степени полинома
-    J_train = zeros(size(d_values));
-    J_test = zeros(size(d_values));
+    f_values = 1:28; % кол-во признаков модели
+    J_train = zeros(size(f_values));
+    J_test = zeros(size(f_values));
 
     % Цикл по различным степеням полинома
-    for i = 1:length(d_values)
+    for i = 1:length(f_values)
         % Создание признаков для данной степени полинома
-        X_train_poly = mapFeature(X_train(:,1), X_train(:,2), d_values(i));
-        X_test_poly = mapFeature(X_test(:,1), X_test(:,2), d_values(i));
+        X_train_poly = mapFeature(X_train(:,1), X_train(:,2), f_values(i));
+        X_test_poly = mapFeature(X_test(:,1), X_test(:,2), f_values(i));
 
         % Инициализация параметров подгонки
         initial_theta = zeros(size(X_train_poly, 2), 1);
 
         % Оптимизация
         [theta] = ...
-            fminunc(@(t)(costFunctionReg(t, X_train_poly, y_train, lambda)), ...
+            fminsearch(@(t)(costFunctionReg(t, X_train_poly, y_train, lambda)), ...
             initial_theta, options);
 
         % Вычисление стоимости для обучающей выборки
@@ -34,9 +34,9 @@ function polynomialDegreeAnalysis(X_train, y_train, X_test, y_test, lambda)
     % Построение графика
     figure;
     hold on;
-    plot(d_values, J_train, '-b', 'LineWidth', 2, 'MarkerSize', 8);
-    plot(d_values, J_test, '-r', 'LineWidth', 2, 'MarkerSize', 8);
-    xlabel('Степень полинома d');
+    plot(f_values, J_train, '-b', 'LineWidth', 2, 'MarkerSize', 8);
+    plot(f_values, J_test, '-r', 'LineWidth', 2, 'MarkerSize', 8);
+    xlabel('Кол-во признаков');
     ylabel('Ошибка');
     legend('J train', 'J test');
     title('График ошибок для обучающего и тестового наборов');

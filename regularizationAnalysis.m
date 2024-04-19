@@ -1,4 +1,4 @@
-function regularizationAnalysis(X_train, y_train, X_test, y_test, degree)
+function regularizationAnalysis(X_train, y_train, X_test, y_test)
     options = optimset('GradObj', 'on', 'MaxIter', 400);
     lambda_values = 0:100;
 
@@ -10,23 +10,19 @@ function regularizationAnalysis(X_train, y_train, X_test, y_test, degree)
     for i = 1:length(lambda_values)
         lambda = lambda_values(i);
 
-        % Создание признаков для фиксированной степени полинома
-        X_train_poly = mapFeature(X_train(:,1), X_train(:,2), degree);
-        X_test_poly = mapFeature(X_test(:,1), X_test(:,2), degree);
-
         % Инициализация параметров подгонки
-        initial_theta = zeros(size(X_train_poly, 2), 1);
+        initial_theta = zeros(size(X_train, 2), 1);
 
         % Оптимизация
         [theta] = ...
-            fminunc(@(t)(costFunctionReg(t, X_train_poly, y_train, lambda)), ...
+            fminunc(@(t)(costFunctionReg(t, X_train, y_train, lambda)), ...
             initial_theta, options);
 
         % Вычисление стоимости для обучающей выборки
-        J_train(i) = costFunctionReg(theta, X_train_poly, y_train, lambda);
+        J_train(i) = costFunctionReg(theta, X_train, y_train, lambda);
 
         % Вычисление стоимости для тестовой выборки
-        J_test(i) = costFunctionReg(theta, X_test_poly, y_test, lambda);
+        J_test(i) = costFunctionReg(theta, X_test, y_test, lambda);
 
         fprintf("СКО, при lambda %f, с обучающими" + ...
             " и тренировочными примерами соответственно: %f ; %f\n", lambda, ...
