@@ -2,13 +2,13 @@ function polynomialDegreeAnalysis(X_train, y_train, X_test, y_test, lambda)
     options = optimset('MaxIter', 400);
 
     % Создание массива для хранения ошибок
-    f_values = 1:28; % кол-во признаков модели
+    f_values = 1:36; % кол-во признаков модели
     J_train = zeros(size(f_values));
     J_test = zeros(size(f_values));
 
-    % Цикл по различным степеням полинома
+    % Цикл по различным признакам
     for i = 1:length(f_values)
-        % Создание признаков для данной степени полинома
+        % Создание признаков для данного признака
         X_train_poly = mapFeature(X_train(:,1), X_train(:,2), f_values(i));
         X_test_poly = mapFeature(X_test(:,1), X_test(:,2), f_values(i));
 
