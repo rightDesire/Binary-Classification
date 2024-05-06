@@ -5,7 +5,7 @@ function featureCombinationsAnalysis(X_train, y_train, X_test, y_test, ...
 
     combinations = generateFeatureCombinations(num_features);
     
-    for i = 1:length(combinations)
+    for i = 1:size(combinations, 1)
         fprintf('Модель %d:\n', i);
         
         % Получаем индексы признаков для текущей модели
