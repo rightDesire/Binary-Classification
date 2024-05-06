@@ -1,6 +1,6 @@
 function regularizationAnalysis(X_train, y_train, X_test, y_test)
     options = optimset('GradObj', 'on', 'MaxIter', 400);
-    lambda_values = 0:100;
+    lambda_values = 0:0.01:2;
 
     % Создание массива для хранения ошибок
     J_train = zeros(size(lambda_values));

@@ -2,11 +2,11 @@
 clear ; close all; clc
 
 %% Инициализация данных
-num_features = 6;
-lambda = 0.2;
+num_features = 28;
+lambda = 0.5;
 
 % Настройки генерации примеров
-% num_examples_to_add = 250;
+% num_examples_to_add = 50;
 % max_noise_level = 0.15;
 
 data = load('ex2data2.txt');
@@ -20,8 +20,11 @@ data = load('ex2data2.txt');
     loadData(data);
 
 %% Расчет КФО при моделях с разными степенями полиномов
-polynomialDegreeAnalysis(X_train, y_train, X_test, y_test, lambda);
+% polynomialDegreeAnalysis(X_train, y_train, X_test, y_test, lambda);
 
 %% Варианты моделей до num_features признаков
-featureCombinationsAnalysis(X_train, y_train, ...
-    X_test, y_test, num_features, lambda);
+% featureCombinationsAnalysis(X_train, y_train, ...
+%     X_test, y_test, num_features, lambda);
+
+%% Модель с num_features признаками
+plotDecisionBoundaryAndAccuracy(X_train, y_train, X_test, y_test, num_features, lambda);
