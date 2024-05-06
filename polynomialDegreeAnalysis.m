@@ -39,6 +39,6 @@ function polynomialDegreeAnalysis(X_train, y_train, X_test, y_test, lambda)
     xlabel('Кол-во признаков');
     ylabel('Ошибка');
     legend('J train', 'J test');
-    title('Зависимость ошибки от кол-ва признаков: обучающий и тестовый наборы');
+    title({'Зависимость ошибки от кол-ва признаков:', 'обучающий и тестовый наборы'});
     hold off;
 end

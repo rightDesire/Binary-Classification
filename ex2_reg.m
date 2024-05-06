@@ -3,15 +3,15 @@ clear ; close all; clc
 
 %% Инициализация данных
 num_features = 6;
-lambda = 1;
+lambda = 0.2;
 
-% % Настройки генерации примеров
-% num_examples_to_add = 1000;
+% Настройки генерации примеров
+% num_examples_to_add = 250;
 % max_noise_level = 0.15;
 
 data = load('ex2data2.txt');
 
-% % Генерация новых примеров на основе исходных
+% Генерация новых примеров на основе исходных
 % [data] = generateExamples(init_data, ...
 %     max_noise_level, num_examples_to_add);
 

@@ -4,9 +4,10 @@ function featureCombinationsAnalysis(X_train, y_train, X_test, y_test, ...
     X_test = mapFeature(X_test(:,1), X_test(:,2), num_features);
 
     combinations = generateFeatureCombinations(num_features);
-    
-    for i = 1:size(combinations, 1)
-        fprintf('Модель %d:\n', i);
+    combinations_length = size(combinations, 1);
+
+    for i = 1:combinations_length
+        fprintf('Модель №%d:\n', i);
         
         % Получаем индексы признаков для текущей модели
         feature_i = combinations(i, :);
@@ -44,18 +45,18 @@ function featureCombinationsAnalysis(X_train, y_train, X_test, y_test, ...
         %% Построение графиков
         plotDecisionBoundary(theta, X_train_subset, y_train, size(X_train_subset, 2));
         hold on;
-        title(sprintf('Модель %d с обучающими примерами', i));
-        xlabel('вибрация');
-        ylabel('непрерывность вращения');
-        legend('Не исправен', 'Исправен', 'Граница решения');
+        title(sprintf('Модель №%d с обучающими примерами', i));
+        xlabel('Тест 1');
+        ylabel('Тест 2');
+        legend('y = 1', 'y = 0', 'Граница решения');
         hold off;
 
         plotDecisionBoundary(theta, X_test_subset, y_test, size(X_test_subset, 2));
         hold on;
-        title(sprintf('Модель %d с тестовыми примерами', i));
-        xlabel('вибрация');
-        ylabel('непрерывность вращения');
-        legend('Не исправен', 'Исправен', 'Граница решения');
+        title(sprintf('Модель №%d с тестовыми примерами', i));
+        xlabel('Тест 1');
+        ylabel('Тест 2');
+        legend('y = 1', 'y = 0', 'Граница решения');
         hold off;
     end
 end

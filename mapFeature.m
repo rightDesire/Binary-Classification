@@ -13,7 +13,5 @@ function out = mapFeature(X1, X2, num_features)
         % Кастомный признак при degree = 0/1
         out(:, end+1) = X1;
         out(:, end+1) = X2;
-        % out(:, end+1) = X1.^3+X2.^3;
-        % out(:, end+1) = X1.^2.*X2.^2;
     end
 end
